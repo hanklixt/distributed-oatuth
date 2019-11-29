@@ -1,0 +1,60 @@
+spring:
+  application:
+    name: order-service
+  main:
+    allow-bean-definition-overriding: true   #定义为true时，后定义的bean会覆盖掉之前的bean
+  http:
+    encoding:
+      enabled: true
+      charset: utf-8
+  freemarker:
+    enabled: true
+    suffix: html
+    request-context-attribute: rc     #引用地址，后面可以使用
+    content-type: text/html
+    charset: UTF-8
+  #mvc
+  mvc:
+    throw-exception-if-no-handler-found: true   #出现异常，抛出NoHandlerFoundException
+  resources:
+    add-mappings: false
+  #datasourse
+#  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    password: root
+#    username: root
+#    url: jdbc:mysql://localhost:3306/user_db?useUnicode=true
+server:
+  port: 53021
+  tomcat:
+    remote-ip-header: x-forwarded-for      #设定remote IP的header，如果remoteIpHeader有值，则设置为RemoteIpValve
+    protocol-header:  x-forwarded-proto    #设定Header包含的协议，通常是 X-Forwarded-Proto，如果remoteIpHeader有值，则将设置为RemoteIpValve.s
+  use-forward-headers: true
+  servlet:
+    context-path: /order
+
+logging:
+  level:
+    root: debug
+    org:
+      springframework:
+        web: info
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:53000/eureka/
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request:
+      enabled: true
+      mime-types:
+        - text/xml
+        - application/xml
+        - application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+
