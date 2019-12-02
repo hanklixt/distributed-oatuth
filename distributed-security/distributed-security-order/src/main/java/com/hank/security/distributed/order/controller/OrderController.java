@@ -1,6 +1,8 @@
 package com.hank.security.distributed.order.controller;
 
+import com.hank.security.distributed.order.model.UserDTO;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +18,7 @@ public class OrderController {
         @PreAuthorize("hasAnyAuthority('p1')")
         public String r1(){
 
-            return "访问资源1";
+            UserDTO userDTO = (UserDTO) SecurityContextHolder.getContext().getAuthentication().getDetails();
+             return  userDTO.getUsername()+ "访问资源1";
         }
 }
