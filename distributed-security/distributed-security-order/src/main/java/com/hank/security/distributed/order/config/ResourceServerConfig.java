@@ -49,8 +49,9 @@ public class ResourceServerConfig  extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/**").access("#oauth2.hasScope('all')")  //token令牌中需要含有all权限才能访问资源
+                .antMatchers("/**").access("#oauth2.hasScope('ROLE_ADMIN')")  //token令牌中需要含有all权限才能访问资源
                 .and().csrf().disable()   //关闭csrf
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);  //禁用session
+
     }
 }
