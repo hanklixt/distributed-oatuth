@@ -59,7 +59,7 @@ public class ResourceServerConfig {
         @Override
         public void configure(HttpSecurity http) throws Exception {
             http.authorizeRequests()
-                    .antMatchers("/order/**").access("#oauth2.hasScope('ROLE_API')");
+                    .antMatchers("/order/**").access("#oauth2.hasScope('ROLE_ADMIN')");
         }
 
     }

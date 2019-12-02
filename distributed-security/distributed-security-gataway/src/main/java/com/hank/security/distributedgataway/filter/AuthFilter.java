@@ -68,7 +68,7 @@ public class AuthFilter extends ZuulFilter {
             jsonToken.put("authorities",authorities);
         }
         //把信息加入到json，加入到http的header中。
-        currentContext.addZuulRequestHeader("json-token", EncryptUtil.decodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
+        currentContext.addZuulRequestHeader("json-token", EncryptUtil.encodeUTF8StringBase64(JSON.toJSONString(jsonToken)));
         return null;
     }
 }

@@ -53,7 +53,7 @@ logging:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:53000/eureka/
+      defaultZone: http://localhost:53000/eureka
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.cloud.client.ipaddress}:${spring.application.instance_id:${server.port}}

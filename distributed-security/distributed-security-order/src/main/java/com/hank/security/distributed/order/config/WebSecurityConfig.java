@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/r/**").authenticated()//所有/r资源都必须要求认证通过
+        //        .antMatchers("/r/**").hasAuthority("p1")//所有/r资源都必须要求认证通过
                 .anyRequest().permitAll();
 
 

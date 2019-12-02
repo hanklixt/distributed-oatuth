@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
         @GetMapping(value = "/r1")
-        @PreAuthorize("hasAnyAuthority('p1')")
         public String r1(){
 
-            UserDTO userDTO = (UserDTO) SecurityContextHolder.getContext().getAuthentication().getDetails();
-             return  userDTO.getUsername()+ "访问资源1";
+            Object details = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            UserDTO userDTO = (UserDTO)details;
+            return  userDTO.getUsername()+ "访问资源1";
         }
 }

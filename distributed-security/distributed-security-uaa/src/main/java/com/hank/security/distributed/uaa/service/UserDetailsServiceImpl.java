@@ -33,7 +33,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 //                .password(user.getPassword())
 //                .authorities("p1").build();
         //拓展用户信息
-        return User.withUsername(username)
+        return User.withUsername(jsonString)
                 .password(user.getPassword())
                 .authorities("p1").build();
     }
