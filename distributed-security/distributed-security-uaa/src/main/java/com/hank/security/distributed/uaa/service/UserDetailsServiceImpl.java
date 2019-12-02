@@ -1,5 +1,6 @@
 package com.hank.security.distributed.uaa.service;
 
+import com.alibaba.fastjson.JSON;
 import com.hank.security.distributed.uaa.dao.UserDao;
 import com.hank.security.distributed.uaa.model.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         //登录账号
         System.out.println("username="+username);
 
-        UserDto userByUsername = userDao.getUserByUsername(username);
-        if (userByUsername==null){
+        UserDto user = userDao.getUserByUsername(username);
+        if (user==null){
             return null;
         }
+        String jsonString = JSON.toJSONString(user);
         //根据账号去数据库查询...
         //这里暂时使用静态数据
+//        return User.withUsername(username)
+//                .password(user.getPassword())
+//                .authorities("p1").build();
+        //拓展用户信息
         return User.withUsername(username)
-                .password(userByUsername.getPassword())
+                .password(user.getPassword())
                 .authorities("p1").build();
     }
 }
